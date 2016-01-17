@@ -23,7 +23,6 @@
 					<button>
 						Add
 					</button>
-					<button>Delete</button>
 				</form>
 
 <!-- Show/Populate this when existing tasks are clicked and hide new task form  -->
@@ -34,11 +33,12 @@
 					<input ng-model="taskObj.name" type="text">
 					<label>Task Description</label>
 					<textarea ng-model="taskObj.description" ></textarea>
-					<button>
-						Add
+					<button type="submit">
+						Submit
 					</button>
-					<button>Delete</button>
+					
 				</form>
+				<button ng-click="deleteTask(task)">Delete</button>
 
 
 			</div>
