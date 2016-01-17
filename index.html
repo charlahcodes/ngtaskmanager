@@ -1,30 +1,57 @@
 <!doctype html>
-<html>
+<html ng-app="testApp">
 	<head>
 		<meta charset="utf-8">
 		<title>Task Manager</title>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
+	  <link rel="stylesheet" type="text/css" href="app/app.css">
+
 	</head>
 	<body>
-		<div class="row">
+		<div class="row" ng-controller="TaskListCtrl">
 			<div id="header">
 				<h1>Task Manager</h1>
 			</div>
 			<div id="task-form">
-				<form>
+				<form ng-submit="addTask(task)">
 					<label>Type of Task</label>
 					<select></select>
 					<label>Task Name</label>
-					<input type="text">
+					<input type="text" ng-model="task.taskName" value="{{taskNameInput}}">
 					<label>Task Description</label>
-					<textarea></textarea>
+					<textarea ng-model="task.taskDesc"></textarea>
 					<button>
 						Add
 					</button>
 					<button>Delete</button>
 				</form>
+
+<!-- Show/Populate this when existing tasks are clicked and hide new task form  -->
+				<form ng-submit="editSubmit(task)">
+					<label>Type of Task</label>
+					<select></select>
+					<label>Task Name</label>
+					<input ng-model="taskObj.name" type="text">
+					<label>Task Description</label>
+					<textarea ng-model="taskObj.description" ></textarea>
+					<button>
+						Add
+					</button>
+					<button>Delete</button>
+				</form>
+
+
 			</div>
 			<div id="task-list">
 				<label>Your Current Tasks:</label>
+				<li ng-repeat="t in taskList" ng-click="edit(task, $index)">
+		      {{t.name}} Created {{t.date | date:'h:mm a'}} on {{t.date | date:'MMMM dd, yyyy'}}
+	      </li>
+
 			</div>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/js/foundation.min.js"></script>
+		  <script src="app/app.js"></script>
 	</body>
 </html>
