@@ -13,23 +13,24 @@
 				<h1>Task Manager</h1>
 			</div>
 			<div id="task-form">
-				<form name="addTask" ng-submit="addTask(task)" ng-show="showAdd">
-					<label>Type of Task</label>
+
+        <form ng-submit="addTask(task)" ng-show="showAdd">
+          <label>Type of Task</label>
 					<select>
 						<option ng-repeat="type in types" ng-model="task.taskType">{{type}}</option>
 					</select>
-					<label>Task Name</label>
-					<input maxlength="24" name="name" type="text" ng-model="task.taskName" value="{{taskNameInput}}">
-					<label>Task Description</label>
-					<textarea ng-model="task.taskDesc"></textarea>
-					<button>
-						Add
-					</button>
-				</form>
+          <label>Task Name</label>
+          <input maxlength="24" type="text" ng-model="task.taskName" value="{{taskNameInput}}">
+          <label>Task Description</label>
+          <textarea ng-model="task.taskDesc"></textarea>
+          <button>
+            Add
+          </button>
+        </form>
 
 <!-- Show/Populate this when existing tasks are clicked and hide new task form  -->
 				<div ng-show="showEdit">
-					<form name="editTask" ng-submit="editSubmit(task)">
+					<form ng-submit="editSubmit(task)">
 						<label>Type of Task</label>
 						<select>
 							<option ng-repeat="type in types" ng-model="taskObj.type">{{type}}</option>

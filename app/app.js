@@ -25,7 +25,7 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
   var Task = function (obj) {
     this.name = obj.taskName;
     this.desc = obj.taskDesc;
-    // this.type = obj.taskType;
+    this.type = obj.taskType;
     this.date = new Date();
   };
 
@@ -33,7 +33,7 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
   var RevTask = function (obj) {
     this.name = $scope.taskObj.name;
     this.desc = $scope.taskObj.description;
-    this.date = $scope.taskObj.date;
+    this.date = new Date();
     this.index = $scope.taskObj.date;
     this.type = $scope.taskObj.type
   };
@@ -59,13 +59,26 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
     $scope.showAdd = false;
   };
 
+  // $scope.editSubmit = function(task) {
+  //   let x = new RevTask(task);
+  //   $scope.taskList[$scope.taskObj.index] = x;
+  // };
+
   $scope.editSubmit = function(task) {
     let x = new RevTask(task);
-    $scope.taskList[$scope.taskObj.index] = x;
+    $scope.taskList[$scope.index] = x;
+    console.log($scope.taskObj);
+    console.log($scope.index);
   };
 
+
+
+
   $scope.deleteTask = function(task) {
-    $scope.taskList.splice($scope.taskObj.index,1);   
+    console.log($scope.index);
+
+
+    $scope.taskList.splice($scope.index,1);   
     if ($scope.taskList.length === 0) {
       $scope.haveTasks = false;
     }; 
