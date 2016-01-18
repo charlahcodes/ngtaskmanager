@@ -49,13 +49,21 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
   };
 
   $scope.addTask = function (task) {
-    let x = new Task(task);
-    $scope.taskList.push(x);
-    $scope.taskObj.index = ($scope.taskList.length - 1);
-    $scope.haveTasks = true;
-    $scope.task={};
-    $scope.newTaskForm.$setPristine();
-    $scope.newTaskForm.$setUntouched();
+    if (task === undefined) {
+      alert("Please complete all fields.");
+    } 
+    else if (task.taskName === undefined || task.taskDesc === undefined || task.taskType === undefined) {
+      alert("Please complete all fields.");
+    } 
+    else {
+      let x = new Task(task);
+      $scope.taskList.push(x);
+      $scope.taskObj.index = ($scope.taskList.length - 1);
+      $scope.haveTasks = true;
+      $scope.task={};
+      $scope.newTaskForm.$setPristine();
+      $scope.newTaskForm.$setUntouched();
+    };
   };
 
 // When existing task is clicked
@@ -74,12 +82,19 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
   };
 
   $scope.editSubmit = function(task) {
-    let x = new RevTask(task);
-    $scope.taskList[$scope.index] = x;
-    $scope.showEdit = false;
-    $scope.showAdd = true;
+    if ($scope.taskObj === undefined) {
+      alert("Please complete all fields.");
+    } 
+    else if ($scope.taskObj.name === '' || $scope.taskObj.description === '' || $scope.taskObj.type === '') {
+      alert("Please complete all fields.");
+    } 
+    else {
+      let x = new RevTask(task);
+      $scope.taskList[$scope.index] = x;
+      $scope.showEdit = false;
+      $scope.showAdd = true;
+    };
   };
-
 
   $scope.deleteTask = function(task) {
 

@@ -3,6 +3,14 @@ h1 {
   text-align: center;
 }
 
+button {
+  border-radius: 9px;
+}
+
+.addButton {
+  background-color: #0D7E00;
+}
+
 .container {
 
 }
