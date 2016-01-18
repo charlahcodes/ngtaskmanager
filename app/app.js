@@ -1,5 +1,15 @@
 'use strict';
 
+var jq = jQuery.noConflict(true);
+
+jq(document).ready(function() {
+    jq(document).foundation();
+})
+
+jq('.closeButton').click(function(){
+  jq('#deleteModal').foundation('reveal', 'close');
+});
+
 angular.module('testApp', []);
 
 angular.module('testApp').controller('TaskListCtrl', function($scope){
@@ -41,9 +51,11 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
   $scope.addTask = function (task) {
     let x = new Task(task);
     $scope.taskList.push(x);
-    console.log(task);
     $scope.taskObj.index = ($scope.taskList.length - 1);
     $scope.haveTasks = true;
+    $scope.task={};
+    $scope.newTaskForm.$setPristine();
+    $scope.newTaskForm.$setUntouched();
   };
 
 // When existing task is clicked
@@ -53,8 +65,6 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
       description: $scope.taskList[index].desc,
       type: $scope.taskList[index].type
     };
-
-    console.log($scope.taskList[index]);
 
     $scope.taskNameInput = task.taskName;
     $scope.taskDesc = task.taskDesc;
@@ -66,9 +76,9 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
   $scope.editSubmit = function(task) {
     let x = new RevTask(task);
     $scope.taskList[$scope.index] = x;
+    $scope.showEdit = false;
+    $scope.showAdd = true;
   };
-
-
 
 
   $scope.deleteTask = function(task) {
@@ -77,6 +87,8 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
     if ($scope.taskList.length === 0) {
       $scope.haveTasks = false;
     }; 
+    $scope.showEdit = false;
+    $scope.showAdd = true;
   };
 	
   var taskList = this;
