@@ -63,7 +63,7 @@
 				<label>Your Current Tasks:</label>
 				<ol>
 					<li ng-repeat="t in taskList" ng-click="edit(task, $index)" ng-show="haveTasks" class="taskItem" ng-class="{'color-red': t.type === 'Bug Fix'}">
-			      {{t.name}} <div class="dateCreated">Created {{t.date | date:'h:mm a'}} on {{t.date | date:'MMMM dd, yyyy'}}</div>
+			      {{t.name}}<div class="dateCreated">Created {{t.date | date:'h:mm a'}} on {{t.date | date:'MMMM dd, yyyy'}}</div>
 		      </li>
 	      </ol>
 	      <ul ng-hide="haveTasks" class="noTasks">
