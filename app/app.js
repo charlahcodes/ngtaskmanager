@@ -6,6 +6,16 @@ jq(document).ready(function() {
     jq(document).foundation();
 })
 
+jq(document).ready(function () {
+    jq('#taskForm').fadeIn(1000).removeClass('hidden');
+});
+
+setTimeout(function() {
+  jq(document).ready(function () {
+  jq('#taskList').fadeIn(1000).removeClass('hidden');
+});
+}, 1000);
+
 jq('.closeButton').click(function(){
   jq('#deleteModal').foundation('reveal', 'close');
 });
@@ -48,6 +58,7 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
     this.type = $scope.taskObj.type
   };
 
+  // When add form is submitted
   $scope.addTask = function (task) {
     if (task === undefined) {
       alert("Please complete all fields.");
@@ -81,6 +92,7 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
     $scope.showAdd = false;
   };
 
+// When edit form is submitted
   $scope.editSubmit = function(task) {
     if ($scope.taskObj === undefined) {
       alert("Please complete all fields.");
@@ -96,8 +108,8 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
     };
   };
 
+// When task is deleted
   $scope.deleteTask = function(task) {
-
     $scope.taskList.splice($scope.index,1);   
     if ($scope.taskList.length === 0) {
       $scope.haveTasks = false;

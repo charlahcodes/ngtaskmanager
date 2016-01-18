@@ -13,9 +13,9 @@
 				<h1>Task Manager</h1>
 				<hr>
 			</div>
-			<div id="task-form" class="small-6 large-6 columns">
-				<div >
-	        <form name="newTaskForm" ng-submit="addTask(task)" ng-show="showAdd" >
+			<div id="taskForm" class="small-6 large-6 columns hidden">
+				<div class="newForm">
+	        <form name="newTaskForm" ng-submit="addTask(task)" ng-show="showAdd">
 	          <label>Type of Task</label>
 						<select ng-model="task.taskType">
 							<option ng-repeat="type in types">{{type}}</option>
@@ -24,7 +24,7 @@
 	          <input maxlength="24" type="text" ng-model="task.taskName" value="{{taskNameInput}}">
 	          <label>Task Description</label>
 	          <textarea ng-model="task.taskDesc"></textarea>
-	          <button class="addButton">
+	          <button class="greenButton">
 	            Add
 	          </button>
 	        </form>
@@ -41,27 +41,29 @@
 						<input maxlength="24" name="name" ng-model="taskObj.name" type="text">
 						<label>Task Description</label>
 						<textarea ng-model="taskObj.description" ></textarea>
-						<button>
+						<button class="greenButton">
 							Finished
 						</button>
+						<a href="#" data-reveal-id="deleteModal"><button type="button" class="redButton">Delete</button></a>
 					</form>
-					<a href="#" data-reveal-id="deleteModal"><button>Delete</button></a>
+					
 				</div>
 
 				<div id="deleteModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 				  <h2 id="modalTitle">Warning:</h2>
 				  <p>Are you sure you want to delete this task?</p>
 					<button ng-click="deleteTask(task)" class="closeButton">Yes, delete this wretched task.</button>
-					<button class="closeButton">Cancel</button>
+					<button class="closeButton grayButton">Cancel</button>
+					<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 				</div>
 
 
 			</div>
-			<div id="task-list" class="small-6 large-6 columns">
+			<div id="taskList" class="small-6 large-6 columns hidden">
 				<label>Your Current Tasks:</label>
 				<ol>
 					<li ng-repeat="t in taskList" ng-click="edit(task, $index)" ng-show="haveTasks" class="taskItem" ng-class="{'color-red': t.type === 'Bug Fix'}">
-			      {{t.name}} Created {{t.date | date:'h:mm a'}} on {{t.date | date:'MMMM dd, yyyy'}}
+			      {{t.name}} <div class="dateCreated">Created {{t.date | date:'h:mm a'}} on {{t.date | date:'MMMM dd, yyyy'}}</div>
 		      </li>
 	      </ol>
 	      <ul ng-hide="haveTasks" class="noTasks">

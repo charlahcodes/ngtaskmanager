@@ -7,16 +7,50 @@ button {
   border-radius: 9px;
 }
 
-.addButton {
+.hidden {
+  display: none;
+}
+
+.greenButton {
   background-color: #0D7E00;
 }
 
-.container {
+.greenButton:focus {
+  background-color: #DA1A3C;
+}
+
+.greenButton:hover {
+  background-color: #DA1A3C;
+}
+
+.redButton {
+  background-color: #DA1A3C;
+}
+
+.redButton:hover {
+  background-color: #0D7E00;
+}
+
+.grayButton {
+  background-color: #808080;
+}
+
+.grayButton:hover {
+  background-color: #008BBC;
+}
+
+.newForm {
 
 }
 
 .taskItem {
   cursor: pointer;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+.dateCreated {
+  float: right;
+  font-size: 0.8em;
 }
 
 .color-red {
