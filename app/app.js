@@ -6,18 +6,26 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
 
   $scope.taskList = [];
 
+  $scope.types = ["Bug Fix", "Feature Request", "Other"];
+
   $scope.index = '';
 
   $scope.taskObj = {
     name: '',
     description: '',
     date: '',
-    index: ''
+    index: '',
+    type: ''
   };
+
+  $scope.showEdit = false;
+  $scope.showAdd = true;
+  $scope.haveTasks = false;
 
   var Task = function (obj) {
     this.name = obj.taskName;
     this.desc = obj.taskDesc;
+    // this.type = obj.taskType;
     this.date = new Date();
   };
 
@@ -27,13 +35,14 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
     this.desc = $scope.taskObj.description;
     this.date = $scope.taskObj.date;
     this.index = $scope.taskObj.date;
+    this.type = $scope.taskObj.type
   };
 
   $scope.addTask = function (task) {
     let x = new Task(task);
     $scope.taskList.push(x);
     $scope.taskObj.index = ($scope.taskList.length - 1);
-
+    $scope.haveTasks = true;
   };
 
 // When existing task is clicked
@@ -42,43 +51,26 @@ angular.module('testApp').controller('TaskListCtrl', function($scope){
       name: $scope.taskList[index].name,
       description: $scope.taskList[index].desc
     };
-    console.log($scope.taskList[index]);
-    console.log($scope.taskObj);
-
 
     $scope.taskNameInput = task.taskName;
     $scope.taskDesc = task.taskDesc;
     $scope.index = index;
-
-
-    // $scope.taskObj = {
-    //   name: task.taskName,
-    //   description: task.taskDesc,
-    //   date: new Date()
-    // };
+    $scope.showEdit = true;
+    $scope.showAdd = false;
   };
 
   $scope.editSubmit = function(task) {
     let x = new RevTask(task);
     $scope.taskList[$scope.taskObj.index] = x;
-    console.log($scope.taskList);
   };
 
   $scope.deleteTask = function(task) {
-    console.log($scope.taskList[0]);
-    $scope.taskList.splice($scope.taskObj.index,1);
-    console.log($scope.taskList);
-    
+    $scope.taskList.splice($scope.taskObj.index,1);   
+    if ($scope.taskList.length === 0) {
+      $scope.haveTasks = false;
+    }; 
   };
 	
-
-
-
-
   var taskList = this;
 	return taskList;
-
-
-
-
 });
