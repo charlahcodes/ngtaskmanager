@@ -1,4 +1,20 @@
 /* Use this for your CSS */
-.error {
+h1 {
+  text-align: center;
+}
+
+.container {
+
+}
+
+.taskItem {
+  cursor: pointer;
+}
+
+.color-red {
   color: red;
+}
+
+.noTasks {
+  list-style-type: none;
 }
